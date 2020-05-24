@@ -5,6 +5,7 @@ typedef vector<int> vi;
 
 void print (vi);
 int maxProfit (vi&);
+void customAlgo(vi &, std::size_t, vi &);
 
 int main()
 {
@@ -31,7 +32,12 @@ int maxProfit (vi & prices) {
     trace.assign(prices.size(), -1);
     trace[trace.size()-1] = 0;
 
-
+    customAlgo(prices, prices.size() - 2, trace);
+	return *max_element(trace.begin(), trace.end());
 
     return 0;
+}
+
+void customAlgo(vi &prices, std::size_t currPos, vi &traceVector) {
+
 }
