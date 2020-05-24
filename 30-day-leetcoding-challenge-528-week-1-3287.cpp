@@ -28,17 +28,10 @@ void print (vi ara) {
 }
 
 int maxProfit (vi & prices) {
-     if (prices.size() <= 1) return 0;
+    if (prices.size() <= 1) return 0;
     vector<int> trace;
 	trace.assign(prices.size(), -1);
     trace[trace.size() - 1] = 0;
-//    if (prices[prices.size()-2] > prices[prices.size()-1]) {
-//        trace[trace.size() - 2] = 0;
-//    } else {
-//        trace[trace.size()-2] = prices[prices.size()-2] - prices[prices.size()-1];
-//    }
-
-    // algorithm
     customAlgo(prices, prices.size() - 2, trace);
     return *max_element(trace.begin(), trace.end());
 }
@@ -50,7 +43,7 @@ void customAlgo(vi &prices, std::size_t currPos, vi &traceVector) {
 		if (prices[currPos] > prices[i]) {
 			continue;
 		}
-		int new_price = prices[i] - prices[currPos] + ((i != prices.size() - 1) ? traceVector[i + 1] : 0);
+		int new_price = prices[i] - prices[currPos] + *max_element(traceVector.begin() + i, traceVector.end());
 		if (old_price < new_price) swap(old_price, new_price);
 	}
 	if (traceVector[currPos] == -1) traceVector[currPos] = old_price;
