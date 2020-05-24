@@ -46,7 +46,7 @@ void customAlgo(vi &prices, std::size_t currPos, vi &traceVector) {
 		    traceVector[currPos] = -1;
 			continue;
 		}
-		int new_price = prices[i] - prices[currPos] + traceVector[i + 1];
+		int new_price = prices[i] - prices[currPos] + ((i != prices.size() - 1) ? traceVector[i + 1] : 0);
 		if (old_price < new_price) swap(old_price, new_price);
 	}
 	if (traceVector[currPos] == -1) traceVector[currPos] = old_price;
