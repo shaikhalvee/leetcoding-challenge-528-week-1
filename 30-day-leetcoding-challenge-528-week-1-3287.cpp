@@ -40,6 +40,15 @@ int maxProfit (vi & prices) {
 
 void customAlgo(vi &prices, std::size_t currPos, vi &traceVector) {
     if (currPos == -1) return;
-
+    int old_price = -1;
+    for (std::size_t i = currPos + 1; i < prices.size(); i++) {
+		if (prices[currPos] > prices[i]) {
+		    traceVector[currPos] = -1;
+			continue;
+		}
+		int new_price = prices[i] - prices[currPos] + traceVector[i + 1];
+		if (old_price < new_price) swap(old_price, new_price);
+	}
+	if (traceVector[currPos] == -1) traceVector[currPos] = old_price;
 	customAlgo(prices, currPos - 1, traceVector);
 }
