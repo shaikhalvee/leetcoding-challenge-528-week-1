@@ -39,5 +39,7 @@ int maxProfit (vi & prices) {
 }
 
 void customAlgo(vi &prices, std::size_t currPos, vi &traceVector) {
+    if (currPos == -1) return;
 
+	customAlgo(prices, currPos - 1, traceVector);
 }
