@@ -7,8 +7,7 @@ void print (vi);
 int maxProfit (vi&);
 void customAlgo(vi &, std::size_t, vi &);
 
-int main()
-{
+int main() {
     ios_base::sync_with_stdio(0);
 
     size_t len;
@@ -40,9 +39,7 @@ void customAlgo(vi &prices, std::size_t currPos, vi &traceVector) {
     if (currPos == -1) return;
 	int old_price = 0;
 	for (std::size_t i = currPos + 1; i < prices.size(); i++) {
-		if (prices[currPos] > prices[i]) {
-			continue;
-		}
+		if (prices[currPos] > prices[i]) continue;
 		int new_price = prices[i] - prices[currPos] + *max_element(traceVector.begin() + i, traceVector.end());
 		if (old_price < new_price) swap(old_price, new_price);
 	}
